@@ -1,11 +1,9 @@
 <?php namespace Keios\LaravelApparatus;
 
 use Illuminate\Support\ServiceProvider;
-use Keios\Apparatus\Core\Dispatch;
 use Keios\Apparatus\Core\Dispatcher;
 use Keios\Apparatus\Core\Event;
-use Keios\Apparatus\Core\ScenarioConfiguration;
-use Keios\Apparatus\Core\ScenarioFactory;
+use Keios\LaravelApparatus\Extensions\InjectingScenarioFactory;
 use Keios\Apparatus\Core\ScenarioRepository;
 use Keios\Apparatus\Core\ScenarioRunner;
 
@@ -36,7 +34,7 @@ class LaravelApparatusServiceProvider extends ServiceProvider
         $this->app->bind(
             'apparatus.factory',
             function () {
-                return new ScenarioFactory($this->app->make('apparatus.configuration'));
+                return new InjectingScenarioFactory($this->app->make('apparatus.configuration'), $this->app);
             }
         );
 
