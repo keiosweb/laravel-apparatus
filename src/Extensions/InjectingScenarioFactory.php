@@ -14,7 +14,7 @@ class InjectingScenarioFactory extends ScenarioFactory
     public function __construct(LoaderInterface $scenarioLoader, Container $serviceContainer)
     {
         $this->getScenariosFrom($scenarioLoader);
-        $this->$serviceContainer = $serviceContainer;
+        $this->serviceContainer = $serviceContainer;
     }
 
     /**
